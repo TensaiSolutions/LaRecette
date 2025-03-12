@@ -8,14 +8,12 @@
 import Foundation
 
 public protocol NetworkService {
-    func fetchData<T: Decodable>(fromUrl: String) async throws -> T?
+    func fetchData<T: Decodable>(fromUrl: String, session:URLSession) async throws -> T?
 }
 
 
 class DefaultNetworkService: NetworkService {
-    func fetchData<T: Decodable>(fromUrl: String) async throws -> T? {
-        let config = URLSessionConfiguration.ephemeral
-        let session = URLSession(configuration: config)
+    func fetchData<T: Decodable>(fromUrl: String, session:URLSession) async throws -> T? {
         guard let downloadedData: T = try await DefaultNetworkService().downloadData(fromURL: fromUrl, session: session) else {return nil}
 
             return downloadedData

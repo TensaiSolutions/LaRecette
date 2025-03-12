@@ -20,14 +20,10 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             List(recipes) { recipe in
-                VStack(alignment: .leading) {
-                    if let image = recipe.photoURLSmall {
-                        CachedImage(url: image)
-                    }
-                    Text(recipe.name)
-                    Text(recipe.cuisine)
-                }
+                RecipeCardView(recipe: recipe)
             }
+            .scrollContentBackground(.hidden)
+            .listRowSeparator(.hidden)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {showingDebug.toggle()} ) {
