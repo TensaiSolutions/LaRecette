@@ -1,0 +1,35 @@
+//
+//  ImageRetriever.swift
+//  LaRecette
+//
+//  Created by philip sidell on 3/10/25.
+//
+
+import Foundation
+
+struct ImageRetriever {
+    func fetch(_ imgURL: String) async throws -> Data {
+        
+        if let data = ImageCache.shared.getObject(forkey: imgURL as NSString) {
+            return data
+        }
+        
+        guard let url = URL(string: imgURL) else {
+            throw RetrieverError.invalidURL
+        }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            ImageCache.shared.setObject(object: data as NSData, forKey: imgURL as NSString)
+            return data
+        } catch {
+            throw RetrieverError.invalidURL
+        }
+    }
+}
+
+private extension ImageRetriever {
+    enum RetrieverError: Error {
+        case invalidURL
+    }
+}
