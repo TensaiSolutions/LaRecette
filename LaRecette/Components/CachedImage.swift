@@ -18,6 +18,7 @@ struct CachedImage: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .frame(width: 300, height: 300)
             }
         }
         .task {

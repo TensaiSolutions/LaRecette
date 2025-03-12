@@ -17,9 +17,7 @@ final class CacheImageManager: ObservableObject {
     func loadImage(_ imgUrl: String) async {
         do {
             self.data = try await imageRetriever.fetch(imgUrl)
-        } catch {
-            print(error)
-        }
+        } catch { }
     }
     
 }
