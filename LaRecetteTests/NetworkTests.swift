@@ -50,10 +50,8 @@ class DefaultNetworkTests {
             return (mockResponse, mockData, nil)
         }
         
-        //Act on sut
         let result: TestModel? = try await networkService.fetchData(fromUrl: testURL, session: urlSession)
         
-        //Assert Results
         #expect(result == TestModel(id: 1, name: "Test Recipe"))
         
     }

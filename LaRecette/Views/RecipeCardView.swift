@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct RecipeCardView: View {
-//    @State private var name: String
-//    @State private var cuisine: String
     @State var recipe: Recipe
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {

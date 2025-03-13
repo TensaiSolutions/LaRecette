@@ -13,9 +13,6 @@ public protocol RecipeService {
 }
 
 class DefaultRecipeService: RecipeService {
-    
-    //let imageCache = ImageCache.shared
-    
     @MainActor
     func fetchRecipes(url: String = APIs.Recipes.allRecipes.url.absoluteString) async throws {
         

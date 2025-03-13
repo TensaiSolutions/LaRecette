@@ -32,7 +32,6 @@ struct MainView: View {
                 }
             }
             .overlay {
-                //TODO: Deal with Loading State (initial load v. empty
                 if isLoading {
                     ProgressView()
                 }
@@ -42,7 +41,6 @@ struct MainView: View {
                     } description: {
                         Text("Pull to refresh")
                     }
-                    //ContentUnavailableView.search
                 }
             }
             .task {
@@ -86,7 +84,6 @@ struct MainView: View {
                 case NetworkError.failedToDecodeResponse:
                     print("Couldn't decode response")
                     toast = .error("Oops Something went wrong!")
-                    //toast = Toast(style:.error, message: "Oops Something went wrong!")
                     isLoading.toggle()
                 default:
                     print("unhandled error: \(error)")

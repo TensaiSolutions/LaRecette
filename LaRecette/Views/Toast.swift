@@ -22,33 +22,6 @@ enum ToastStyle {
     case info
 }
 
-//extension ToastStyle {
-//    var themeColor: Color {
-//        switch self {
-//        case .error:
-//            return .red
-//        case .success:
-//            return .green
-//        case .warning:
-//            return .yellow
-//        case .info:
-//            return .blue
-//        }
-//    }
-//    
-//    var icon: String {
-//        switch self {
-//        case .error:
-//            return "exclamationmark.triangle.fill"
-//        case .success:
-//            return "checkmark.circle.fill"
-//        case .warning:
-//            return "exclamationmark.triangle.fill"
-//        case .info:
-//            return "info.circle.fill"
-//        }
-//    }
-//}
 extension Toast {
     static func error(_ message: String) -> Toast { Toast(color: .red, icon: "exclamationmark.triangle.fill", message: message) }
     static func success(_ message: String) -> Toast { Toast(color: .green, icon: "checkmark.circle.fill", message: message) }
@@ -56,7 +29,6 @@ extension Toast {
     static func info(_ message: String) -> Toast { Toast(color: .green, icon: "info.circle.fill", message: message) }
     
 }
-
 
 struct ToastView: View {
     var toast: Toast
