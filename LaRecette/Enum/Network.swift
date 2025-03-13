@@ -6,9 +6,9 @@
 //
 
 enum NetworkError: Error {
-    case badUrl
-    case invalidRequest
     case badResponse
     case badStatus
+    case badUrl
     case failedToDecodeResponse
+    case invalidRequest
 }

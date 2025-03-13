@@ -30,6 +30,3 @@ struct RecipeDTO: Decodable {
 struct RecipesDTO: Decodable {
     var recipes: [RecipeDTO]
 }
-
-
-

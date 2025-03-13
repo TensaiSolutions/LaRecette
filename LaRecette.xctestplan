@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "096EBE9E-735C-4D19-AEFA-CB342B1A6709",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:LaRecette.xcodeproj",
+      "identifier" : "3A29732B2D7C8DF5009A1B69",
+      "name" : "LaRecette"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:LaRecette.xcodeproj",
+        "identifier" : "3A29733D2D7C8DF7009A1B69",
+        "name" : "LaRecetteTests"
+      }
+    }
+  ],
+  "version" : 1
+}

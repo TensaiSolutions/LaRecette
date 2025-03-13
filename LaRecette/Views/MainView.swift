@@ -32,7 +32,6 @@ struct MainView: View {
                 }
             }
             .overlay {
-                //TODO: Deal with Loading State (initial load v. empty
                 if isLoading {
                     ProgressView()
                 }
@@ -42,7 +41,6 @@ struct MainView: View {
                     } description: {
                         Text("Pull to refresh")
                     }
-                    //ContentUnavailableView.search
                 }
             }
             .task {
@@ -77,17 +75,20 @@ struct MainView: View {
     private func fetchRecipes() {
         isLoading.toggle()
         Task{
+            @MainActor in
             do{
-                try await recipeService.fetchRecipes(modelContext: modelContext, url: apiInUse.url.absoluteString)
+                try await recipeService.fetchRecipes(url: apiInUse.url.absoluteString)
                 isLoading.toggle()
             } catch {
                 switch error {
                 case NetworkError.failedToDecodeResponse:
                     print("Couldn't decode response")
-                    toast = Toast(style:.error, message: "Oops Something went wrong!")
+                    toast = .error("Oops Something went wrong!")
                     isLoading.toggle()
                 default:
+                    print("unhandled error: \(error)")
                     break
+                    
                 }
             }
         }

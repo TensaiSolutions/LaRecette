@@ -7,17 +7,19 @@
 
 import Foundation
 
-final class CacheImageManager: ObservableObject {
+@Observable
+class CacheImageManager {
     
-    @Published private(set) var data: Data?
-    
+    private(set) var data: Data?
     private let imageRetriever = ImageRetriever()
     
     @MainActor
     func loadImage(_ imgUrl: String) async {
         do {
             self.data = try await imageRetriever.fetch(imgUrl)
-        } catch { }
+        } catch {
+            print("error: \(error)")
+        }
     }
     
 }

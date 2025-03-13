@@ -6,7 +6,6 @@
 //
 
 private struct RecipeServiceKey: InjectionKey {
-
     static var currentValue: RecipeService = DefaultRecipeService()
 }
 

@@ -13,7 +13,7 @@ class ImageCache {
     
     static let shared = ImageCache()
     
-    private init() {}
+    private init() { }
     
     private lazy var cache: CacheType = {
         LRUCache(capacity: 100)

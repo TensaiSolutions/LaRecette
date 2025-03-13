@@ -7,9 +7,12 @@
 
 import Foundation
 
+enum RetrieverError: Error {
+    case invalidURL
+}
+
 struct ImageRetriever {
     func fetch(_ imgURL: String) async throws -> Data {
-        
         if let data = ImageCache.shared.getObject(forkey: imgURL as NSString) {
             return data
         }
@@ -25,11 +28,5 @@ struct ImageRetriever {
         } catch {
             throw RetrieverError.invalidURL
         }
-    }
-}
-
-private extension ImageRetriever {
-    enum RetrieverError: Error {
-        case invalidURL
     }
 }

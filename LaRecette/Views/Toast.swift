@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct Toast: Equatable {
-    var style: ToastStyle
+    var color: Color
+    var icon: String
     var message: String
     var duration: Double = 3
     var width: Double = .infinity
@@ -21,47 +22,28 @@ enum ToastStyle {
     case info
 }
 
-extension ToastStyle {
-    var themeColor: Color {
-        switch self {
-        case .error:
-            return .red
-        case .success:
-            return .green
-        case .warning:
-            return .yellow
-        case .info:
-            return .blue
-        }
-    }
+extension Toast {
+    static func error(_ message: String) -> Toast { Toast(color: .red, icon: "exclamationmark.triangle.fill", message: message) }
+    static func success(_ message: String) -> Toast { Toast(color: .green, icon: "checkmark.circle.fill", message: message) }
+    static func warning(_ message: String) -> Toast { Toast(color: .green, icon: "exclamationmark.triangle.fill", message: message) }
+    static func info(_ message: String) -> Toast { Toast(color: .green, icon: "info.circle.fill", message: message) }
     
-    var icon: String {
-        switch self {
-        case .error:
-            return "exclamationmark.triangle.fill"
-        case .success:
-            return "checkmark.circle.fill"
-        case .warning:
-            return "exclamationmark.triangle.fill"
-        case .info:
-            return "info.circle.fill"
-        }
-    }
 }
 
 struct ToastView: View {
-    var style: ToastStyle
+    var toast: Toast
     var message: String
     var width = CGFloat.infinity
     var onCancelTapped: (() -> Void)
     
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
-            Image(systemName: style.icon)
-                .foregroundColor(style.themeColor)
+            Image(systemName: toast.icon)
+                .foregroundColor(toast.color)
             Text(message)
                 .font(Font.caption)
-                .foregroundColor(.white)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
             
             Spacer(minLength: 10)
             
@@ -70,16 +52,16 @@ struct ToastView: View {
                 
             } label: {
                 Image(systemName: "xmark")
-                    .foregroundColor(style.themeColor)
+                    .foregroundColor(toast.color)
             }
         }
         .padding()
         .frame(minWidth: 0, maxWidth: width)
-        .background(Color.black.opacity(0.3))
+        .background(Color.teal.opacity(0.5))
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .opacity(0.6)
+                .opacity(0.2)
         )
         .padding(.horizontal, 16)
         
@@ -108,7 +90,7 @@ struct ToastModifier: ViewModifier {
     private func mainToastView() -> some View {
         if let toast {
             VStack {
-                ToastView(style: toast.style, message: toast.message, width: toast.width) {
+                ToastView(toast: toast, message: toast.message, width: toast.width) {
                     dismissToast()
                 }
                 Spacer()
@@ -148,4 +130,8 @@ extension View {
     func toastView(toast: Binding<Toast?>) -> some View {
         self.modifier(ToastModifier(toast: toast))
     }
+}
+
+#Preview {
+    ToastView(toast: .error("OOPS"), message: "OOPS") {}
 }
