@@ -4,17 +4,18 @@
 //
 //  Created by philip sidell on 3/10/25.
 //
+
 import SwiftUI
 
 struct CachedImage: View {
     
-    @StateObject private var manager = CacheImageManager()
+    @State private var manager = CacheImageManager()
+    
     let url: String
     
     var body: some View {
         ZStack {
-            if let data = manager.data,
-               let image = UIImage(data: data){
+            if let data = manager.data, let image = UIImage(data: data){
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)

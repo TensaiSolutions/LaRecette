@@ -6,6 +6,7 @@
 //
 import Foundation
 
+
 class MockURLProtocol: URLProtocol {
     
     static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data?, Error?))?
@@ -34,5 +35,6 @@ class MockURLProtocol: URLProtocol {
             client?.urlProtocol(self, didFailWithError: error)
         }
     }
-    override func stopLoading() {}
+    
+    override func stopLoading() { }
 }

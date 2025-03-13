@@ -6,7 +6,6 @@
 //
 
 private struct NetworkServiceKey: InjectionKey {
-
     static var currentValue: NetworkService = DefaultNetworkService()
 }
 

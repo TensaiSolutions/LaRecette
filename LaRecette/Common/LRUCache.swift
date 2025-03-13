@@ -6,6 +6,7 @@
 //
 
 class LRUCache<T: Hashable, U> {
+    
     private(set) var capacity: UInt
     private(set) var linkedList = DoubleLinkedList<CachePayload<T, U>>()
     private(set) var dictionary = [T: Node<CachePayload<T, U>>]()

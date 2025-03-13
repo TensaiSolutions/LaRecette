@@ -14,8 +14,7 @@ public protocol NetworkService {
 
 class DefaultNetworkService: NetworkService {
     func fetchData<T: Decodable>(fromUrl: String, session:URLSession) async throws -> T? {
-        guard let downloadedData: T = try await DefaultNetworkService().downloadData(fromURL: fromUrl, session: session) else {return nil}
-
+        guard let downloadedData: T = try await DefaultNetworkService().downloadData(fromURL: fromUrl, session: session) else { return nil }
             return downloadedData
         }
     
@@ -51,11 +50,9 @@ class DefaultNetworkService: NetworkService {
 extension Data {
     var prettyPrintedJSONString: NSString? {
         guard let jsonObject = try? JSONSerialization.jsonObject(with: self, options: []),
-              let data = try? JSONSerialization.data(withJSONObject: jsonObject,
-                                                       options: [.prettyPrinted]),
-              let prettyJSON = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else {
-                  return nil
-               }
+              let data = try? JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted]),
+              let prettyJSON = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+        else { return nil }
 
         return prettyJSON
     }

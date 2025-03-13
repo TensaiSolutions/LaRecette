@@ -28,12 +28,45 @@ struct RecipeCardView: View {
             Text(recipe.name)
                 .font(.headline)
             HStack(spacing: 4.0) {
-                Image(systemName: "fork.knife.circle")
+                //Image(systemName: "fork.knife.circle")
+                Text(getFlagForCuisine(cusine: recipe.cuisine))
                 Text(recipe.cuisine)
             }
             .foregroundColor(.gray)
             .padding(.bottom, 16)
         }
+    }
+}
+
+
+private func getFlagForCuisine(cusine: String) -> String {
+    switch cusine.lowercased() {
+    case "american":
+        return "🇺🇸"
+    case "canadian":
+        return "🇨🇦"
+    case "french":
+        return "🇫🇷"
+    case "italian":
+        return "🇮🇹"
+    case "british":
+        return "🇬🇧"
+    case "malaysian":
+        return "🇲🇾"
+    case "tunisian":
+        return "🇹🇳"
+    case "greek":
+        return "🇬🇷"
+    case "polish":
+        return "🇵🇱"
+    case "portuguese":
+        return "🇵🇹"
+    case "russian":
+        return "🇷🇺"
+    case "croatian":
+        return "🇭🇷"
+    default:
+        return ""
     }
 }
 
