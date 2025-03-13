@@ -24,7 +24,7 @@
 ### Summary: Include screen shots or a video of your app highlighting its features
 <img src="images/LaRecetteMain.png" alt="Main View" width="200"/>
 <video width="320" height="240" controls>
-  <source src="demo.mp4" type="video/mp4">
+  <source src="images/demo.mp4" type="video/mp4">
 </video>
 
 
