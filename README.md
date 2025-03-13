@@ -22,7 +22,7 @@
 
 
 ### Summary: Include screen shots or a video of your app highlighting its features
-![Main View](images/LaRecetteMain.png)
+<img src="images/LaRecetteMain.png" alt="Main View" width="200"/>
 
 ### Focus Areas: What specific areas of the project did you prioritize? Why did you choose to focus on these areas?
 I focused on Dependcy Injection of the Services to allow them to be testable and flexible. this allows me to make seperate constructions of the services for different functions as the app grows and also ensures that dependecies are being explicity used v. a global object that has all dependencies and they are shared across the app
