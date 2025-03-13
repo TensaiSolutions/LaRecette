@@ -32,7 +32,7 @@ I also worked on making sure that the Network load is as lightweight as possible
 I also wanted to try out using SwiftData to allow for persistance of the responses from the services. This was new for me but I wanted to see if it could be adapted for use in this app.
 
 ### Time Spent: Approximately how long did you spend working on this project? How did you allocate your time?
-I spent approximately 15 hours developing the app. I spent most of this time on the plubming and features below the UI. Most time was spent on the Services and Dependency Injection framework as well as creating a cache that isn't relying on URLSession's HTTP caching.
+I spent approximately 5-10 hours developing the app. I spent most of this time on the plumbing and features below the UI. Most time was spent on the Services and Dependency Injection framework as well as creating a cache that isn't relying on URLSession's HTTP caching.
 
 ### Trade-offs and Decisions: Did you make any significant trade-offs in your approach?
 Since I needed to implement the app without using 3rd party libraries and frameworks there were some tradeoffs in terms of features within parts of the app in order to make a solid working MVP type of app. For example with DI using Protocol injection, I would normally use a framework like [swift-dependencies](https://github.com/pointfreeco/swift-dependencies). I also chose to focus on more of the below the UI layer features and requirements so the UI is still a bit rough around the edges but could be polished with some design and UX pretty easily
