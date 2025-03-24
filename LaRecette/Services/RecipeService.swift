@@ -8,18 +8,21 @@
 import Foundation
 import SwiftData
 
-public protocol RecipeService {
+public protocol RecipeService:Sendable {
     func fetchRecipes(url: String) async throws
 }
 
-class DefaultRecipeService: RecipeService {
-    @MainActor
+@MainActor
+final class DefaultRecipeService: RecipeService {
+    
+    @Injected(\.networkService) var networkService: NetworkService
+        
     func fetchRecipes(url: String = APIs.Recipes.allRecipes.url.absoluteString) async throws {
         
         let container = try ModelContainer(for: Recipe.self)
         let context = container.mainContext
         
-        @Injected(\.networkService) var networkService: NetworkService
+        //@Injected(\.networkService) var networkService: NetworkService
         
         let config = URLSessionConfiguration.ephemeral
         let session = URLSession(configuration: config)
@@ -45,6 +48,5 @@ class DefaultRecipeService: RecipeService {
     private func clearContext(modelContext: ModelContext) throws {
         try modelContext.delete(model: Recipe.self)
         try modelContext.save()
-        //imageCache.clearCache()
     }
 }

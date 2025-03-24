@@ -12,6 +12,7 @@ public protocol InjectionKey {
     static var currentValue: Self.Value { get set }
 }
 
+@MainActor
 struct InjectedValues {
     private static var current = InjectedValues()
     
@@ -27,6 +28,7 @@ struct InjectedValues {
 }
 
 @propertyWrapper
+@MainActor
 struct Injected<T> {
     private let keyPath: WritableKeyPath<InjectedValues, T>
     

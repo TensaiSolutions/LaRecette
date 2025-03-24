@@ -45,15 +45,17 @@ struct MainView: View {
             }
             .task {
                 if recipes.isEmpty {
-                    fetchRecipes()
+                    await fetchRecipes()
                 }
             }
             .refreshable {
-                fetchRecipes()
+                await fetchRecipes()
             }
             .onChange(of: apiInUse) {
                 showingDebug.toggle()
-                fetchRecipes()
+            }
+            .task(id: apiInUse) {
+                await fetchRecipes()
             }
             .navigationBarTitle("Recettes")
         }
@@ -72,10 +74,10 @@ struct MainView: View {
         
     }
     
-    private func fetchRecipes() {
+    private func fetchRecipes() async {
         isLoading.toggle()
-        Task{
-            @MainActor in
+        //Task{
+            //@MainActor in
             do{
                 try await recipeService.fetchRecipes(url: apiInUse.url.absoluteString)
                 isLoading.toggle()
@@ -91,7 +93,7 @@ struct MainView: View {
                     
                 }
             }
-        }
+        //}
     }
 }
 

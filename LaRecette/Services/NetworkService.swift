@@ -7,16 +7,21 @@
 
 import Foundation
 
-public protocol NetworkService {
+public protocol NetworkService: Sendable {
     func fetchData<T: Decodable>(fromUrl: String, session:URLSession) async throws -> T?
 }
 
-
-class DefaultNetworkService: NetworkService {
-    func fetchData<T: Decodable>(fromUrl: String, session:URLSession) async throws -> T? {
-        guard let downloadedData: T = try await DefaultNetworkService().downloadData(fromURL: fromUrl, session: session) else { return nil }
+@MainActor
+final class DefaultNetworkService: NetworkService {
+    func fetchData<T: Sendable>(fromUrl: String, session: URLSession) async throws -> T? where T : Decodable {
+            guard let downloadedData: T = try await DefaultNetworkService().downloadData(fromURL: fromUrl, session: session) else { return nil }
             return downloadedData
         }
+    
+//    func fetchData<T: Decodable, Sendable>(fromUrl: String, session:URLSession) async throws -> T? {
+//        guard let downloadedData: T = try await DefaultNetworkService().downloadData(fromURL: fromUrl, session: session) else { return nil }
+//            return downloadedData
+//        }
     
     private func downloadData<T: Decodable>(fromURL: String, session:URLSession) async throws -> T? {
             do {

@@ -13,7 +13,7 @@ enum RetrieverError: Error {
 
 struct ImageRetriever {
     func fetch(_ imgURL: String) async throws -> Data {
-        if let data = ImageCache.shared.getObject(forkey: imgURL as NSString) {
+        if let data = await ImageCache.shared.getObject(forkey: imgURL as NSString) {
             return data
         }
         
@@ -23,7 +23,7 @@ struct ImageRetriever {
         
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            ImageCache.shared.setObject(object: data as NSData, forKey: imgURL as NSString)
+            await ImageCache.shared.setObject(object: data as NSData, forKey: imgURL as NSString)
             return data
         } catch {
             throw RetrieverError.invalidURL

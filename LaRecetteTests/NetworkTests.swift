@@ -15,6 +15,7 @@ struct TestModel: Decodable, Equatable {
 }
 
 @Suite("Networking Tests", .serialized)
+@MainActor
 class DefaultNetworkTests {
     private var urlSession: URLSession!
     private var networkService: DefaultNetworkService!

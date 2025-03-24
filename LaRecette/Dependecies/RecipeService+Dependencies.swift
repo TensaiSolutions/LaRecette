@@ -4,14 +4,14 @@
 //
 //  Created by philip sidell on 3/11/25.
 //
-
-private struct RecipeServiceKey: InjectionKey {
+@MainActor
+private struct RecipeServiceKey: @preconcurrency InjectionKey {
     static var currentValue: RecipeService = DefaultRecipeService()
 }
 
 extension InjectedValues {
     var recipeService: RecipeService {
-        get { Self[RecipeServiceKey.self] }
-        set { Self[RecipeServiceKey.self] = newValue }
+        get { Self.self[RecipeServiceKey.self] }
+        set { Self.self[RecipeServiceKey.self] = newValue }
     }
 }

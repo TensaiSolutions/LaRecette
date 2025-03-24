@@ -12,7 +12,8 @@ struct RecipeCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
             if let image = recipe.photoURLSmall {
-                CachedImage(url: image)
+                NewCacheImage(url: image)
+                //CachedImage(url: image)
             }
             cardText.padding(.horizontal, 8)
         }

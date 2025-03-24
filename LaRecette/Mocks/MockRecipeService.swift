@@ -7,7 +7,8 @@
 import Foundation
 import SwiftData
 
-class MockRecipeService: RecipeService {
+@MainActor
+final class MockRecipeService: RecipeService {
     
     var recipeDTOList: [RecipeDTO]
     

@@ -6,10 +6,10 @@
 //
 import Foundation
 
-
+//@MainActor
 class MockURLProtocol: URLProtocol {
     
-    static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data?, Error?))?
+    nonisolated(unsafe) static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data?, Error?))?
     
     override class func canInit(with request: URLRequest) -> Bool {
         return true
@@ -18,7 +18,6 @@ class MockURLProtocol: URLProtocol {
     override class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
-    
     override func startLoading() {
         guard let handler = MockURLProtocol.requestHandler else {
             fatalError("Handler is unavailable")

@@ -7,16 +7,17 @@
 
 import Foundation
 
-class ImageCache {
+@MainActor
+final class ImageCache:Sendable {
     
     typealias CacheType = LRUCache<NSString, NSData>
     
-    static let shared = ImageCache()
+    @MainActor static let shared = ImageCache()
     
     private init() { }
     
     private lazy var cache: CacheType = {
-        LRUCache(capacity: 100)
+        @MainActor in LRUCache(capacity: 100)
     }()
         
     func getObject(forkey key: NSString) -> Data? {
