@@ -17,12 +17,21 @@ struct MainView: View {
     @State private var toast: Toast? = nil
     @State private var isLoading: Bool = false
     @State private var loadingFailed = false
+    @State private var searchText = ""
+
+    private var visibleRecipes: [Recipe] {
+        RecipeSearch(query: searchText).filter(recipes)
+    }
     
     var body: some View {
         NavigationView {
-            List(recipes) { recipe in
+            List(visibleRecipes) { recipe in
                 RecipeCardView(recipe: recipe)
             }
+            .accessibilityIdentifier("recipeList")
+            .searchable(text: $searchText, prompt: "Name or cuisine")
+            .autocorrectionDisabled()
+            .textInputAutocapitalization(.never)
             .scrollContentBackground(.hidden)
             .listRowSeparator(.hidden)
             .toolbar {
@@ -44,6 +53,13 @@ struct MainView: View {
                     } description: {
                         Text(loadingFailed ? "Pull to refresh and try again" : "Pull to refresh")
                     }
+                } else if visibleRecipes.isEmpty && !isLoading {
+                    ContentUnavailableView {
+                        Label("No Matching Recipes", systemImage: "magnifyingglass")
+                    } description: {
+                        Text("Try a different name or cuisine")
+                    }
+                    .accessibilityIdentifier("recipeSearchEmpty")
                 }
             }
             .task {
