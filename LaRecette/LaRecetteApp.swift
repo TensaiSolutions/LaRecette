@@ -10,18 +10,30 @@ import SwiftData
 
 @main
 struct LaRecetteApp: App {
-    var sharedModelContainer: ModelContainer = {
+    var sharedModelContainer: ModelContainer
+
+    @MainActor
+    init() {
+        var fixtureMode: String?
+        #if DEBUG
+        fixtureMode = ProcessInfo.processInfo.environment["LARECETTE_UI_FIXTURE"]
+        #endif
         let schema = Schema([
             Recipe.self,
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: fixtureMode != nil)
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            sharedModelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
-    }()
+        #if DEBUG
+        if let fixtureMode {
+            InjectedValues[\.recipeService] = UIRecipeFixtureService(mode: fixtureMode, context: sharedModelContainer.mainContext)
+        }
+        #endif
+    }
 
     var body: some Scene {
         WindowGroup {

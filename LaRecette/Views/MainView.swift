@@ -16,12 +16,22 @@ struct MainView: View {
     @State private var apiInUse: APIs.Recipes = APIs.Recipes.allRecipes
     @State private var toast: Toast? = nil
     @State private var isLoading: Bool = false
+    @State private var loadingFailed = false
+    @State private var searchText = ""
+
+    private var visibleRecipes: [Recipe] {
+        RecipeSearch(query: searchText).filter(recipes)
+    }
     
     var body: some View {
         NavigationView {
-            List(recipes) { recipe in
+            List(visibleRecipes) { recipe in
                 RecipeCardView(recipe: recipe)
             }
+            .accessibilityIdentifier("recipeList")
+            .searchable(text: $searchText, prompt: "Name or cuisine")
+            .autocorrectionDisabled()
+            .textInputAutocapitalization(.never)
             .scrollContentBackground(.hidden)
             .listRowSeparator(.hidden)
             .toolbar {
@@ -33,14 +43,23 @@ struct MainView: View {
             }
             .overlay {
                 if isLoading {
-                    ProgressView()
+                    ProgressView("Loading recipes")
+                        .accessibilityIdentifier("recipeLoading")
                 }
                 if recipes.isEmpty && !isLoading {
                     ContentUnavailableView {
-                        Label("No Recipes Available", systemImage: "fork.knife.circle")
+                        Label(loadingFailed ? "Couldn't Load Recipes" : "No Recipes Available",
+                              systemImage: loadingFailed ? "exclamationmark.triangle" : "fork.knife.circle")
                     } description: {
-                        Text("Pull to refresh")
+                        Text(loadingFailed ? "Pull to refresh and try again" : "Pull to refresh")
                     }
+                } else if visibleRecipes.isEmpty && !isLoading {
+                    ContentUnavailableView {
+                        Label("No Matching Recipes", systemImage: "magnifyingglass")
+                    } description: {
+                        Text("Try a different name or cuisine")
+                    }
+                    .accessibilityIdentifier("recipeSearchEmpty")
                 }
             }
             .task {
@@ -73,23 +92,15 @@ struct MainView: View {
     }
     
     private func fetchRecipes() {
-        isLoading.toggle()
-        Task{
-            @MainActor in
-            do{
+        isLoading = true
+        loadingFailed = false
+        Task { @MainActor in
+            defer { isLoading = false }
+            do {
                 try await recipeService.fetchRecipes(url: apiInUse.url.absoluteString)
-                isLoading.toggle()
             } catch {
-                switch error {
-                case NetworkError.failedToDecodeResponse:
-                    print("Couldn't decode response")
-                    toast = .error("Oops Something went wrong!")
-                    isLoading.toggle()
-                default:
-                    print("unhandled error: \(error)")
-                    break
-                    
-                }
+                loadingFailed = true
+                toast = .error("Oops Something went wrong!")
             }
         }
     }

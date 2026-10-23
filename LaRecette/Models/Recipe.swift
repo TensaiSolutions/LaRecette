@@ -20,7 +20,7 @@ class Recipe: Identifiable {
         self.uuid = uuid
         self.name = name
         self.cuisine = cuisine
-        self.photoURLLarge = photoURLSmall
+        self.photoURLLarge = photoURLLarge
         self.photoURLSmall = photoURLSmall
         self.sourceURL = sourceURL
         self.youtubeURL = youtubeURL
