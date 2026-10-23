@@ -19,6 +19,13 @@
 			remoteGlobalIDString = 3A29732B2D7C8DF5009A1B69;
 			remoteInfo = LaRecette;
 		};
+		1E9AC2CD8F9032DC2AFFDCDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A2973242D7C8DF5009A1B69 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A29732B2D7C8DF5009A1B69;
+			remoteInfo = LaRecette;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +34,7 @@
 		3A29733E2D7C8DF7009A1B69 /* LaRecetteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LaRecetteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A762BAE2D8300EF00D66BC4 /* LaRecette.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LaRecette.xctestplan; sourceTree = "<group>"; };
 		3AD84FAE2D812EA8007D8847 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		EA8F00824DE19F3E472CC911 /* LaRecetteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LaRecetteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -58,6 +66,11 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		1B30B9452D4C8660BAC4ECD5 /* LaRecetteUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LaRecetteUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +88,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		115060ECBD8AD9B330196E4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,6 +106,7 @@
 				3AD84FAE2D812EA8007D8847 /* .gitignore */,
 				3A29732E2D7C8DF5009A1B69 /* LaRecette */,
 				3A2973412D7C8DF7009A1B69 /* LaRecetteTests */,
+				1B30B9452D4C8660BAC4ECD5 /* LaRecetteUITests */,
 				3A29732D2D7C8DF5009A1B69 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +116,7 @@
 			children = (
 				3A29732C2D7C8DF5009A1B69 /* LaRecette.app */,
 				3A29733E2D7C8DF7009A1B69 /* LaRecetteTests.xctest */,
+				EA8F00824DE19F3E472CC911 /* LaRecetteUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +170,18 @@
 			productReference = 3A29733E2D7C8DF7009A1B69 /* LaRecetteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		3A2973472D7C8DF7009A1B69 /* LaRecetteUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D83FCEA1AFBEA21B4A865A1A /* Build configuration list for PBXNativeTarget "LaRecetteUITests" */;
+			buildPhases = (21650437C9403655B2B36C38, 115060ECBD8AD9B330196E4D, 36CE90BAAF2DF25CB29B5BB8);
+			buildRules = ();
+			dependencies = (480F90CACEB07BDA2F8B683B);
+			fileSystemSynchronizedGroups = (1B30B9452D4C8660BAC4ECD5);
+			name = LaRecetteUITests;
+			productName = LaRecetteUITests;
+			productReference = EA8F00824DE19F3E472CC911 /* LaRecetteUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -184,6 +217,7 @@
 			targets = (
 				3A29732B2D7C8DF5009A1B69 /* LaRecette */,
 				3A29733D2D7C8DF7009A1B69 /* LaRecetteTests */,
+				3A2973472D7C8DF7009A1B69 /* LaRecetteUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -205,6 +239,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		36CE90BAAF2DF25CB29B5BB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -222,6 +262,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		21650437C9403655B2B36C38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -229,6 +275,11 @@
 			isa = PBXTargetDependency;
 			target = 3A29732B2D7C8DF5009A1B69 /* LaRecette */;
 			targetProxy = 3A29733F2D7C8DF7009A1B69 /* PBXContainerItemProxy */;
+		};
+		480F90CACEB07BDA2F8B683B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A29732B2D7C8DF5009A1B69 /* LaRecette */;
+			targetProxy = 1E9AC2CD8F9032DC2AFFDCDC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -448,6 +499,34 @@
 			};
 			name = Release;
 		};
+		1D9E5CCF07F4DC9ECB4B6A5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tensai-solutions.LaRecetteUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LaRecette;
+			};
+			name = Debug;
+		};
+		95EA31F8105776D62D9D6A98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tensai-solutions.LaRecetteUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LaRecette;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -475,6 +554,12 @@
 				3A2973562D7C8DF7009A1B69 /* Debug */,
 				3A2973572D7C8DF7009A1B69 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D83FCEA1AFBEA21B4A865A1A /* Build configuration list for PBXNativeTarget "LaRecetteUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (1D9E5CCF07F4DC9ECB4B6A5A, 95EA31F8105776D62D9D6A98);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};

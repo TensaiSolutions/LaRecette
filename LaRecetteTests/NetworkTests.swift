@@ -7,7 +7,7 @@
 
 import Testing
 @testable import LaRecette
-import SwiftUICore
+import Foundation
 
 struct TestModel: Decodable, Equatable {
     let id: Int

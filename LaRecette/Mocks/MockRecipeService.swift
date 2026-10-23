@@ -10,16 +10,17 @@ import SwiftData
 class MockRecipeService: RecipeService {
     
     var recipeDTOList: [RecipeDTO]
+    private let modelContext: ModelContext
     
-    init(recipeDTOList: [RecipeDTO]) {
+    init(recipeDTOList: [RecipeDTO], modelContext: ModelContext) {
         self.recipeDTOList = recipeDTOList
+        self.modelContext = modelContext
     }
     
     @MainActor
     func fetchRecipes(url: String) async throws {
         //Mock the Calls to Network Service and just return the data
-        let container = try ModelContainer(for: Recipe.self)
-        let context = container.mainContext
+        let context = modelContext
         
         //Create a Recipe and persist it
         for recipe in recipeDTOList {
